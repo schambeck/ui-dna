@@ -1,0 +1,15 @@
+<p-panel header="Stats">
+  <div *ngIf="loading else spinner" class="surface-ground col-12 md:px-6 lg:px-8">
+    <div class="grid">
+      <p-skeleton height="8rem" class="col-12 md:col-4 lg:col-4"></p-skeleton>
+      <p-skeleton height="8rem" class="col-12 md:col-4 lg:col-4"></p-skeleton>
+      <p-skeleton height="8rem" class="col-12 md:col-4 lg:col-4"></p-skeleton>
+    </div>
+  </div>
+
+  <ng-template #spinner>
+    <div #pnl class="surface-ground col-12 md:px-6 lg:px-8">
+      <app-stats-form [stats]="stats"></app-stats-form>
+    </div>
+  </ng-template>
+</p-panel>
