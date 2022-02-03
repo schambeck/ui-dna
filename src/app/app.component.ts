@@ -9,5 +9,5 @@ LogRocket.init('hhu6kg/schambeck');
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ui-dna';
+  title = 'DNA';
 }
