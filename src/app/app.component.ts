@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import LogRocket from 'logrocket';
+
+LogRocket.init('hhu6kg/schambeck');
 
 @Component({
   selector: 'app-root',
