@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {StatsDetailComponent} from "./feature/stats-screen/stats-detail/stats-detail.component";
+import {StatsComponent} from "./feature/stats-screen/stats/stats.component";
 import {PageNotFoundComponent} from "./feature/page-not-found-screen/page-not-found/page-not-found.component";
+import { HomeComponent } from './feature/home-screen/home/home.component';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { ProfileComponent } from './feature/profile-screen/profile/profile.component';
 
 const routes: Routes = [
-  {path: 'stats', component: StatsDetailComponent},
-  {path: '', redirectTo: '/stats', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'stats', component: StatsComponent, canActivate: [AuthGuard]},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 

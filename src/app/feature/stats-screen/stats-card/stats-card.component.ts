@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Stats} from "../../../shared/model/stats";
 
 @Component({
-  selector: 'app-stats-form',
-  templateUrl: './stats-form.component.html',
-  styleUrls: ['./stats-form.component.css']
+  selector: 'app-stats-card',
+  templateUrl: './stats-card.component.html',
+  styleUrls: ['./stats-card.component.css']
 })
-export class StatsFormComponent implements OnInit {
+export class StatsCardComponent implements OnInit {
 
   @Input()
   stats?: Stats | null;

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { StatsDetailComponent } from './stats-detail.component';
+import { StatsComponent } from './stats.component';
 import { StatsService } from '../../../shared/service/stats.service';
 
-describe('StatsDetailComponent', () => {
-  let component: StatsDetailComponent;
-  let fixture: ComponentFixture<StatsDetailComponent>;
+describe('StatsComponent', () => {
+  let component: StatsComponent;
+  let fixture: ComponentFixture<StatsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatsDetailComponent ],
+      declarations: [ StatsComponent ],
       imports: [HttpClientTestingModule], 
       providers: [StatsService]  
     })
@@ -18,7 +18,7 @@ describe('StatsDetailComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StatsDetailComponent);
+    fixture = TestBed.createComponent(StatsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

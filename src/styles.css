@@ -1,6 +1,7 @@
-html {
-  background-color: #f8f9fa;
+:root {
+  --background-color: #edf1f5;
 }
-body {
-  padding: 2em;
+
+html {
+  background-color: var(--background-color);
 }

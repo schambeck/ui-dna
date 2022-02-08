@@ -1,0 +1,9 @@
+{
+  "domain": "dev-lug9ug4n.us.auth0.com",
+  "clientId": "eKc5I51jm4DI0Rk4IqnUioJAtOrA540H",
+  "audience": "http://dna-schambeck.herokuapp.com",
+  "apiUri": "https://dna-rest.herokuapp.com",
+  "appUri": "http://ui-dna.herokuapp.com",
+  "errorPath": "/error",
+  "scope": "read:stats"
+}

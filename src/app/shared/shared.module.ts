@@ -4,7 +4,7 @@ import {StatsService} from "./service/stats.service";
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule
   ],
   providers: [StatsService]
 })
