@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import {MenubarModule} from 'primeng/menubar';
 import {ToolbarModule} from 'primeng/toolbar';
 import {MenuModule} from 'primeng/menu';
+import {SidebarModule} from 'primeng/sidebar';
+import { SidebarScreenModule } from '../sidebar-screen/sidebar-screen.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {MenuModule} from 'primeng/menu';
     MenubarModule,
     ToolbarModule,
     ButtonModule,
-    MenuModule
+    MenuModule,
+    SidebarModule,
+    SidebarScreenModule
   ],
   exports: [
     HeaderComponent

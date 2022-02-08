@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import LogRocket from 'logrocket';
 
 LogRocket.init('hhu6kg/schambeck');
@@ -10,4 +10,10 @@ LogRocket.init('hhu6kg/schambeck');
 })
 export class AppComponent {
   title = 'DNA';
+
+  @Input()
+  display!: boolean;
+
+  @Output()
+  displayChange = new EventEmitter<boolean>();
 }

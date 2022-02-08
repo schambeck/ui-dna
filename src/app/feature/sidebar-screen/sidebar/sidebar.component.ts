@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { MenuItem } from 'primeng/api';
 
@@ -8,6 +8,12 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+
+  @Input()
+  display!: boolean;
+
+  @Output()
+  displayChange = new EventEmitter<boolean>();
 
   items: MenuItem[];
 
@@ -47,6 +53,11 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  toggleDisplay(): void {
+    this.display = !this.display;
+    this.displayChange.emit(this.display);
   }
 
 }

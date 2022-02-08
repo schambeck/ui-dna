@@ -1,6 +1,10 @@
+<p-sidebar [(visible)]="display">
+    <app-sidebar [(display)]="display"></app-sidebar>
+</p-sidebar>
+
 <p-toolbar>
     <div class="p-toolbar-group-left">
-        <img src="assets/dna.png" alt="DNA">
+        <img src="assets/dna.png" (click)="display = true" alt="DNA">
     </div>
     <div class="p-toolbar-group-right">
         <app-logged-user></app-logged-user>
