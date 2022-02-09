@@ -40,6 +40,7 @@ export class MutantComponent implements OnDestroy {
     };
     this.mutant$ = this.service.mutant(payload).subscribe({
       next: dna => this.messageService.add({severity: 'success', summary: 'DNA Created', detail: JSON.stringify(dna)}),
+      error: () => this.saving = false,
       complete: () => this.saving = false
     });
   }
