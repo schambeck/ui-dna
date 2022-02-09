@@ -1,3 +1,7 @@
 :host ::ng-deep .p-panel .p-panel-content {
     background-color: var(--background-color);
 }
+
+:host ::ng-deep .p-card .p-card-content {
+    padding: 0;
+}
