@@ -12,13 +12,13 @@ describe('StatsService', () => {
   }));
 
   it('should be created', () => {
-    const service: StatsService = TestBed.get(StatsService);
+    service = TestBed.inject(StatsService);
     expect(service).toBeTruthy();
   });
 
 
   it('should have find function', () => {
-    const service: StatsService = TestBed.get(StatsService);
+    service = TestBed.inject(StatsService);
     expect(service.stats).toBeTruthy();
   });
 
