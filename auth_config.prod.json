@@ -5,5 +5,5 @@
   "apiUri": "https://dna-rest.herokuapp.com",
   "appUri": "http://ui-dna.herokuapp.com",
   "errorPath": "/error",
-  "scope": "read:stats"
+  "scope": "read:stats create:mutant"
 }

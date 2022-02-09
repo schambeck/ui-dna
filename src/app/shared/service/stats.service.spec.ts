@@ -19,7 +19,7 @@ describe('StatsService', () => {
 
   it('should have find function', () => {
     const service: StatsService = TestBed.get(StatsService);
-    expect(service.find).toBeTruthy();
+    expect(service.stats).toBeTruthy();
   });
 
 });

@@ -12,6 +12,10 @@ import { HeaderScreenModule } from './feature/header-screen/header-screen.module
 import { SidebarScreenModule } from './feature/sidebar-screen/sidebar-screen.module';
 import { HomeScreenModule } from './feature/home-screen/home-screen.module';
 import { environment as env } from '../environments/environment';
+import { MutantScreenModule } from './feature/mutant-screen/mutant-screen.module';
+import { MessageService } from 'primeng/api';
+import { ErrorHttpInterceptorService } from './shared/service/error-http-interceptor.service';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { environment as env } from '../environments/environment';
     SidebarScreenModule,
     ProfileScreenModule,
     HomeScreenModule,
+    MutantScreenModule,
     StatsScreenModule,
+    ToastModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
@@ -39,7 +45,13 @@ import { environment as env } from '../environments/environment';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHttpInterceptorService,
+      multi: true
+    },
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

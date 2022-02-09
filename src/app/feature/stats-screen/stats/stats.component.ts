@@ -18,7 +18,7 @@ export class StatsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loading = true;
-    this.stats$ = this.service.find().subscribe(stats => {
+    this.stats$ = this.service.stats().subscribe(stats => {
       this.loading = false;
       this.stats = stats;
     });
