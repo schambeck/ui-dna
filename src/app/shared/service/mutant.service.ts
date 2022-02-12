@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {environment} from '../../../environments/environment';
 import { Dna } from '../model/dna';
 import { PayloadDna } from '../model/payload-dna';
+import { Page } from '../model/page';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,6 +24,11 @@ export class MutantService {
   mutant(payload: PayloadDna): Observable<Dna> {
     const url = `${this.url}`;
     return this.http.post<Dna>(url, payload, httpOptions)
+  }
+
+  list(page = 0, rows = 10): Observable<Page<Dna>> {
+    let params = new HttpParams().set('page', page).set('size', rows);
+    return this.http.get<Page<Dna>>(this.url, { params: params });
   }
 
 }

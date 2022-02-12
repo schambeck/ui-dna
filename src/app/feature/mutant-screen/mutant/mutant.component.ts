@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { PayloadDna } from 'src/app/shared/model/payload-dna';
@@ -25,8 +26,10 @@ export class MutantComponent implements OnDestroy {
   saving = false;
   mutant$?: Subscription;
 
-  constructor(private service: MutantService, private messageService: MessageService) { }
-
+  constructor(private titleService: Title, private service: MutantService, private messageService: MessageService) {
+    this.titleService.setTitle("Mutant");
+  }
+   
   ngOnDestroy(): void {
     if (this.mutant$) {
       this.mutant$?.unsubscribe();

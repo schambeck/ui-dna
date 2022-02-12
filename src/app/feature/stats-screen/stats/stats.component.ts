@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import {Stats} from "../../../shared/model/stats";
 import {StatsService} from "../../../shared/service/stats.service";
@@ -18,7 +19,8 @@ export class StatsComponent implements OnInit, OnDestroy {
   styleHuman = "var(--background-color)";
   styleRatio = "var(--background-color)";
 
-  constructor(private service: StatsService) {
+  constructor(private titleService: Title, private service: StatsService) {
+    this.titleService.setTitle("Stats");
   }
 
   ngOnInit() {

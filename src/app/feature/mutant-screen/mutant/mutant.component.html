@@ -1,16 +1,20 @@
-<p-panel header="Mutant">
-    <div class="grid p-fluid">
-        <div class="field col-12">
-            <label for="size">Size</label>
-            <p-inputNumber inputId="size" [(ngModel)]="size" mode="decimal"></p-inputNumber>
+<p-accordion>
+    <p-accordionTab header="Create Mutant">
+        <div class="grid p-fluid">
+            <div class="field col-12">
+                <label for="size">Size</label>
+                <p-inputNumber inputId="size" [(ngModel)]="size" mode="decimal"></p-inputNumber>
+            </div>
+            <div class="field col-12">
+                <label for="dna">DNA</label>
+                <textarea inputId="dna" [(ngModel)]="dna" [rows]="size" [cols]="size" pInputTextarea style="font-family: 'Courier New', Courier, monospace;"></textarea>
+            </div>
         </div>
-        <div class="field col-12">
-            <label for="dna">DNA</label>
-            <textarea inputId="dna" [(ngModel)]="dna" [rows]="size" [cols]="size" pInputTextarea style="font-size: 2rem; font-family: 'Courier New', Courier, monospace;"></textarea>
+        <div class="sizes">
+            <p-button label="Save" (onClick)="save()" icon="pi pi-check" [loading]="saving" class="mr-1"></p-button>
+            <p-button label="Reset" (onClick)="reset()" icon="pi pi-times"></p-button>
         </div>
-    </div>
-    <div class="sizes">
-        <p-button label="Save" (onClick)="save()" icon="pi pi-check" [loading]="saving" class="mr-1"></p-button>
-        <p-button label="Reset" (onClick)="reset()" icon="pi pi-times"></p-button>
-    </div>
-</p-panel>
+    </p-accordionTab>
+</p-accordion>
+
+<app-list-mutant></app-list-mutant>

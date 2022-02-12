@@ -6,10 +6,19 @@ import { FormsModule } from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ButtonModule} from 'primeng/button';
+import { ListMutantComponent } from './list-mutant/list-mutant.component';
+import {TableModule} from "primeng/table";
+import {CardModule} from "primeng/card";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SkeletonModule } from 'primeng/skeleton';
+import {AccordionModule} from 'primeng/accordion';
+import {TooltipModule} from 'primeng/tooltip';
+import {PaginatorModule} from 'primeng/paginator';
 
 @NgModule({
   declarations: [
-    MutantComponent
+    MutantComponent,
+    ListMutantComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +26,14 @@ import {ButtonModule} from 'primeng/button';
     FormsModule,
     InputNumberModule,
     InputTextareaModule,
-    ButtonModule
+    ButtonModule,
+    TableModule,
+    CardModule,
+    BrowserAnimationsModule,
+    SkeletonModule,
+    AccordionModule,
+    TooltipModule,
+    PaginatorModule
   ]
 })
 export class MutantScreenModule { }
