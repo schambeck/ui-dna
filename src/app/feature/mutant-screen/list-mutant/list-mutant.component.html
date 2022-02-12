@@ -1,71 +1,61 @@
-<div>
-  <p-table *ngIf="loading else spinner" styleClass="p-datatable-sm" [value]="fake">
+<p-table *ngIf="loading else table" styleClass="p-datatable-sm" [value]="fake" responsiveLayout="scroll">
+  <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+          DNAs
+          <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
+      </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th class="hidden lg:block">Hash</th>
+      <th style="text-align: center">Mutant</th>
+    </tr>
+  </ng-template>
+  
+  <ng-template pTemplate="body" let-fake>
+    <tr>
+      <td width="34%"><p-skeleton></p-skeleton></td>
+      <td class="hidden lg:block"><p-skeleton></p-skeleton></td>
+      <td width="6%"><p-skeleton></p-skeleton></td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<ng-template #table>
+  <p-table [value]="page.content" styleClass="p-datatable-sm" selectionMode="single" dataKey="id" 
+    responsiveLayout="scroll" [(selection)]="selectedDna">
+    
     <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between">
-            DNAs
-            <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
-        </div>
+      <div class="flex align-items-center justify-content-between">
+          DNAs
+          <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
+      </div>
     </ng-template>
 
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
-        <div class="hidden lg:inline-flex">
-          <th>Hash</th>
-        </div>
-      <th>Mutant</th>
+        <th class="hidden lg:block">Hash</th>
+        <th style="text-align: center">Mutant</th>
       </tr>
     </ng-template>
     
-    <ng-template pTemplate="body" let-fake>
-      <tr>
-        <td><p-skeleton></p-skeleton></td>
-        <div class="hidden lg:inline-flex">
-          <td><p-skeleton></p-skeleton></td>
-        </div>
-        <td><p-skeleton></p-skeleton></td>
+    <ng-template pTemplate="body" let-dna>
+      <tr [pSelectableRow]="dna" (click)="navigateToDetail(dna)" style="font-family: 'Courier New', Courier, monospace;">
+        <td>{{dna.id}}</td>
+        <td class="hidden lg:block">{{dna.hash}}</td>
+        <td style="text-align: center">
+          <i *ngIf="dna.mutant" class="pi pi-map-marker text-orange-500 text-sm" pTooltip="Mutant"></i>
+          <i *ngIf="!dna.mutant" class="pi pi-user text-blue-500 text-sm" pTooltip="Human"></i>
+        </td>
       </tr>
     </ng-template>
   </p-table>
-
-  <ng-template #spinner>
-    <p-table [value]="page.content" styleClass="p-datatable-sm" selectionMode="single" dataKey="id" 
-      responsiveLayout="scroll" [(selection)]="selectedDna">
-      
-      <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between">
-            DNAs
-            <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
-        </div>
-      </ng-template>
-
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Id</th>
-          <div class="hidden lg:inline-flex">
-            <th>Hash</th>
-          </div>
-          <th>Mutant</th>
-        </tr>
-      </ng-template>
-      
-      <ng-template pTemplate="body" let-dna>
-        <tr [pSelectableRow]="dna" (click)="navigateToDetail(dna)" style="font-family: 'Courier New', Courier, monospace;">
-          <td>{{dna.id}}</td>
-          <div class="hidden lg:inline-flex">
-            <td>{{dna.hash}}</td>
-          </div>
-          <td style="text-align: center">
-              <i *ngIf="dna.mutant" class="pi pi-map-marker text-orange-500 text-sm" pTooltip="Mutant"></i>
-              <i *ngIf="!dna.mutant" class="pi pi-user text-blue-500 text-sm" pTooltip="Human"></i>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </ng-template>
-
-  <p-paginator [rows]="rows" [totalRecords]="page.totalElements" 
-    [rowsPerPageOptions]="[10,25,50]" (onPageChange)="paginate($event)" [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
-  </p-paginator>
-</div>
+</ng-template>
+  
+<p-paginator [rows]="rows" [totalRecords]="page.totalElements" 
+  [rowsPerPageOptions]="[10,25,50]" (onPageChange)="paginate($event)" [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+</p-paginator>
