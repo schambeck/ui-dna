@@ -10,22 +10,28 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
-        <th>Hash</th>
-        <th>Mutant</th>
+        <div class="hidden lg:inline-flex">
+          <th>Hash</th>
+        </div>
+      <th>Mutant</th>
       </tr>
     </ng-template>
     
     <ng-template pTemplate="body" let-fake>
       <tr>
         <td><p-skeleton></p-skeleton></td>
-        <td><p-skeleton></p-skeleton></td>
+        <div class="hidden lg:inline-flex">
+          <td><p-skeleton></p-skeleton></td>
+        </div>
         <td><p-skeleton></p-skeleton></td>
       </tr>
     </ng-template>
   </p-table>
 
   <ng-template #spinner>
-    <p-table [value]="page.content" styleClass="p-datatable-sm">
+    <p-table [value]="page.content" styleClass="p-datatable-sm" selectionMode="single" dataKey="id" 
+      responsiveLayout="scroll" [(selection)]="selectedDna">
+      
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
             DNAs
@@ -36,7 +42,9 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Id</th>
-          <th>Hash</th>
+          <div class="hidden lg:inline-flex">
+            <th>Hash</th>
+          </div>
           <th>Mutant</th>
         </tr>
       </ng-template>
@@ -44,7 +52,9 @@
       <ng-template pTemplate="body" let-dna>
         <tr [pSelectableRow]="dna" (click)="navigateToDetail(dna)" style="font-family: 'Courier New', Courier, monospace;">
           <td>{{dna.id}}</td>
-          <td>{{dna.hash}}</td>
+          <div class="hidden lg:inline-flex">
+            <td>{{dna.hash}}</td>
+          </div>
           <td style="text-align: center">
               <i *ngIf="dna.mutant" class="pi pi-map-marker text-orange-500 text-sm" pTooltip="Mutant"></i>
               <i *ngIf="!dna.mutant" class="pi pi-user text-blue-500 text-sm" pTooltip="Human"></i>
