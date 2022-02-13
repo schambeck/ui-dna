@@ -5,3 +5,7 @@
   margin: 0 auto;
   width: 100px;
 }
+
+:host ::ng-deep .p-panel {
+  box-shadow: var(--shadow-4);
+}

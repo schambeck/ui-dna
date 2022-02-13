@@ -5,3 +5,7 @@
 :host ::ng-deep .p-card .p-card-content {
     padding: 0;
 }
+
+:host ::ng-deep .p-panel {
+    box-shadow: var(--shadow-4);
+}

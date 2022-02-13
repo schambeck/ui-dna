@@ -1,0 +1,3 @@
+:host ::ng-deep .p-accordion-tab {
+    box-shadow: var(--shadow-4);
+}

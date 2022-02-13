@@ -1,0 +1,3 @@
+:host ::ng-deep .p-menu {
+    box-shadow: var(--shadow-4);
+}

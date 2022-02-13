@@ -1,0 +1,15 @@
+:host ::ng-deep .p-datatable {
+    box-shadow: var(--shadow-4);
+}
+
+:host ::ng-deep .p-datatable-header {
+    box-shadow: var(--shadow-4);
+}
+
+:host ::ng-deep .p-datatable-table {
+    box-shadow: var(--shadow-4);
+}
+
+:host ::ng-deep .p-paginator {
+    box-shadow: var(--shadow-4);
+}
