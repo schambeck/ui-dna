@@ -1,6 +1,6 @@
-<p-table *ngIf="loading else table" styleClass="p-datatable-sm" [value]="fake" responsiveLayout="scroll">
+<p-table *ngIf="loading else table" styleClass="p-datatable-sm" [value]="fake" responsiveLayout="scroll" class="pt-4">
   <ng-template pTemplate="caption">
-      <div class="flex align-items-center justify-content-between">
+      <div class="flex align-items-center justify-content-between pl-2">
           DNAs
           <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
       </div>
@@ -28,7 +28,7 @@
     responsiveLayout="scroll" [(selection)]="selectedDna">
 
     <ng-template pTemplate="caption">
-      <div class="flex align-items-center justify-content-between">
+      <div class="flex align-items-center justify-content-between pl-2">
           DNAs
           <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
       </div>
@@ -55,11 +55,11 @@
   </p-table>
 </ng-template>
 
-<p-paginator [rows]="rows" [totalRecords]="page.totalElements" class="hidden lg:block"
+<p-paginator [rows]="rows" [totalRecords]="page.totalElements" class="hidden lg:block pt-2"
   [rowsPerPageOptions]="[10,25,50]" (onPageChange)="paginate($event)" [showCurrentPageReport]="true"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 </p-paginator>
 
-<p-paginator [rows]="rows" [totalRecords]="page.totalElements" class="lg:hidden block"
+<p-paginator [rows]="rows" [totalRecords]="page.totalElements" class="lg:hidden block pt-2"
   (onPageChange)="paginate($event)" [pageLinkSize]="2">
 </p-paginator>
