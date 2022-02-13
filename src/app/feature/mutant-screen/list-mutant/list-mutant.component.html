@@ -1,39 +1,12 @@
-<p-table *ngIf="loading else table" styleClass="p-datatable-sm" [value]="fake" responsiveLayout="scroll" class="pt-4">
-  <ng-template pTemplate="caption">
-      <div class="flex align-items-center justify-content-between pl-2">
-          DNAs
-          <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
-      </div>
-  </ng-template>
-
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Id</th>
-      <th class="hidden lg:block">Hash</th>
-      <th style="text-align: center">Mutant</th>
-    </tr>
-  </ng-template>
-
-  <ng-template pTemplate="body" let-fake>
-    <tr>
-      <td width="34%"><p-skeleton></p-skeleton></td>
-      <td class="hidden lg:block"><p-skeleton></p-skeleton></td>
-      <td width="6%"><p-skeleton></p-skeleton></td>
-    </tr>
-  </ng-template>
-</p-table>
-
-<ng-template #table>
-  <p-table [value]="page.content" styleClass="p-datatable-sm" selectionMode="single" dataKey="id"
-    responsiveLayout="scroll" [(selection)]="selectedDna">
-
+<div *ngIf="page$ | async as page; else skeleton">
+  <p-table styleClass="p-datatable-sm" [value]="page.content" responsiveLayout="scroll" class="pt-4" selectionMode="single" dataKey="id">
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between pl-2">
           DNAs
-          <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
+          <p-button icon="pi pi-refresh" (onClick)="refresh()" [loading]="loading" pTooltip="Refresh"></p-button>
       </div>
     </ng-template>
-
+  
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
@@ -41,7 +14,7 @@
         <th style="text-align: center">Mutant</th>
       </tr>
     </ng-template>
-
+  
     <ng-template pTemplate="body" let-dna>
       <tr [pSelectableRow]="dna" (click)="navigateToDetail(dna)" style="font-family: 'Courier New', Courier, monospace;">
         <td width="34%" style="max-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{dna.id}}</td>
@@ -52,14 +25,42 @@
         </td>
       </tr>
     </ng-template>
+  </p-table>  
+</div>
+
+<ng-template #skeleton>
+  <p-table styleClass="p-datatable-sm" [value]="fake" responsiveLayout="scroll" class="pt-4">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between pl-2">
+            DNAs
+            <p-button icon="pi pi-refresh" (onClick)="load()" [loading]="loading" pTooltip="Refresh"></p-button>
+        </div>
+    </ng-template>
+  
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th class="hidden lg:block">Hash</th>
+        <th style="text-align: center">Mutant</th>
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="body" let-fake>
+      <tr>
+        <td width="34%"><p-skeleton></p-skeleton></td>
+        <td class="hidden lg:block"><p-skeleton></p-skeleton></td>
+        <td width="6%"><p-skeleton></p-skeleton></td>
+      </tr>
+    </ng-template>
   </p-table>
+  
 </ng-template>
 
-<p-paginator [rows]="rows" [totalRecords]="page.totalElements" class="hidden lg:block pt-2"
+<p-paginator [rows]="rows" [totalRecords]="totalElements" class="hidden lg:block pt-2"
   [rowsPerPageOptions]="[10,25,50]" (onPageChange)="paginate($event)" [showCurrentPageReport]="true"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 </p-paginator>
 
-<p-paginator [rows]="rows" [totalRecords]="page.totalElements" class="lg:hidden block pt-2"
+<p-paginator [rows]="rows" [totalRecords]="totalElements" class="lg:hidden block pt-2"
   (onPageChange)="paginate($event)" [pageLinkSize]="2">
 </p-paginator>

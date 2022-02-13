@@ -1,5 +1,5 @@
 export interface Dna {
-  id?: string;
-  hash?: string;
-  mutant?: boolean;
+  id: string;
+  hash: string;
+  mutant: boolean;
 }

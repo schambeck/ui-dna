@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Dna } from 'src/app/shared/model/dna';
 import { MutantService } from 'src/app/shared/service/mutant.service';
-import {Subscription} from "rxjs";
+import { Observable, tap } from "rxjs";
 import { Page } from 'src/app/shared/model/page';
 
 @Component({
@@ -9,33 +9,34 @@ import { Page } from 'src/app/shared/model/page';
   templateUrl: './list-mutant.component.html',
   styleUrls: ['./list-mutant.component.css']
 })
-export class ListMutantComponent implements OnInit {
+export class ListMutantComponent {
 
-  dnas$?: Subscription;
-  page = new Page<Dna>();
   rows = 10;
-  selectedDna?: Dna;
-  fake: Dna[] = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
-  loading: boolean = false;
+  page$ = this.load();
+  fake = new Array(10);
+  loading = false;
+  totalElements = 0;
+  currentPage = 0;
 
   constructor(private service: MutantService) { }
 
-  ngOnInit(): void {
-    this.load();
-  }
-
-  load(page = 0): void {
+  load(page = 0): Observable<Page<Dna>> {
     this.loading = true;
-    this.dnas$ = this.service.list(page, this.rows).subscribe({
-      next: page => this.page = page,
+    this.currentPage = page;
+    return this.service.list(page, this.rows).pipe(tap({
+      next: page => this.totalElements = page.totalElements,
       error: () => this.loading = false,
       complete: () => this.loading = false
-    });
+    }));
+  }
+
+  refresh(): void {
+    this.page$ = this.load(this.currentPage);
   }
 
   paginate(event: any) {
     this.rows = event.rows;
-    this.load(event.page);
+    this.page$ = this.load(event.page);
   }
 
   navigateToDetail(dna: Dna): void {
