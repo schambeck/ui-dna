@@ -1,5 +1,5 @@
 export interface Stats {
-  ratio?: number;
-  countMutantDna?: number;
-  countHumanDna?: number;
+  ratio: number;
+  countMutantDna: number;
+  countHumanDna: number;
 }

@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component} from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import {Stats} from "../../../shared/model/stats";
 import {StatsService} from "../../../shared/service/stats.service";
 
@@ -9,12 +9,11 @@ import {StatsService} from "../../../shared/service/stats.service";
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
-export class StatsComponent implements OnInit, OnDestroy {
+export class StatsComponent {
 
-  stats?: Stats;
+  stats$ = this.load();
   previousStats?: Stats;
-  loading: boolean = false;
-  stats$?: Subscription;
+  loading = false;
   styleMutant = "var(--background-color)";
   styleHuman = "var(--background-color)";
   styleRatio = "var(--background-color)";
@@ -23,35 +22,36 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.titleService.setTitle("Stats");
   }
 
-  ngOnInit() {
+  load(): Observable<Stats> {
     this.loading = true;
-    this.stats$ = this.service.stats().subscribe(stats => {
-      this.loading = false;
-      this.stats = stats;
-      if (this.previousStats) {
-        if (this.stats.countMutantDna !== this.previousStats?.countMutantDna) {
-          this.styleMutant = "lightblue";
-        }
-        if (this.stats.countHumanDna !== this.previousStats?.countHumanDna) {
-          this.styleHuman = "lightblue";
-        }
-        if (this.stats.ratio !== this.previousStats?.ratio) {
-          this.styleRatio = "lightblue";
-        }
-      }
-
-      (async () => {
-        await new Promise(f => setTimeout(f, 1000));
-        this.styleMutant = "var(--background-color)";
-        this.styleHuman = "var(--background-color)";
-        this.styleRatio = "var(--background-color)";
-      })();
-      this.previousStats = this.stats;
-    });
+    return this.service.stats().pipe(tap({
+      next: stats => this.next(stats),
+      error: () => this.loading = false,
+      complete: () => this.loading = false
+    }));
   }
 
-  ngOnDestroy(): void {
-    this.stats$?.unsubscribe();
+  next(stats: Stats): void {
+    this.loading = false;
+    if (this.previousStats) {
+      if (stats.countMutantDna !== this.previousStats?.countMutantDna) {
+        this.styleMutant = "lightblue";
+      }
+      if (stats.countHumanDna !== this.previousStats?.countHumanDna) {
+        this.styleHuman = "lightblue";
+      }
+      if (stats.ratio !== this.previousStats?.ratio) {
+        this.styleRatio = "lightblue";
+      }
+    }
+
+    (async () => {
+      await new Promise(f => setTimeout(f, 1000));
+      this.styleMutant = "var(--background-color)";
+      this.styleHuman = "var(--background-color)";
+      this.styleRatio = "var(--background-color)";
+    })();
+    this.previousStats = stats;
   }
 
 }
