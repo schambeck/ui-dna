@@ -1,3 +1,7 @@
 :host ::ng-deep .p-sidebar {
     width: auto;
 }
+
+:host ::ng-deep .p-toolbar {
+    padding: 0.75em;
+}
