@@ -17,9 +17,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle("Profile");
     if (this.auth.user$) {
-      this.auth.user$.subscribe(
-        (profile) => (this.profileJson = JSON.stringify(this.removeProperties(profile), null, 2))
-      );
+      this.auth.user$.subscribe(profile => this.profileJson = JSON.stringify(this.removeProperties(profile), null, 2));
     }
   }
 
@@ -32,6 +30,8 @@ export class ProfileComponent implements OnInit {
       let cloned = new User();
       Object.assign(cloned, profile);
       delete cloned.picture;
+      delete cloned.updated_at;
+      delete cloned.sub;
       return cloned;
     }
     return undefined;
