@@ -1,3 +1,3 @@
 export interface PayloadDna {
-  dna?: string[];
+  dna: string[];
 }

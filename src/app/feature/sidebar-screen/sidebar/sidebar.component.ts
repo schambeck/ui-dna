@@ -10,7 +10,7 @@ import { MenuItem } from 'primeng/api';
 export class SidebarComponent implements OnInit {
 
   @Input()
-  display!: boolean;
+  display?: boolean;
 
   @Output()
   displayChange = new EventEmitter<boolean>();

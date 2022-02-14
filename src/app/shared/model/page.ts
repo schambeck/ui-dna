@@ -1,5 +1,5 @@
-export class Page<T> {
-  content!: T[];
-  size!: number;
-  totalElements!: number;
+export interface Page<T> {
+  content: T[];
+  size: number;
+  totalElements: number;
 }
