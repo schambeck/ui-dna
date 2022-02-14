@@ -22,7 +22,7 @@ export class ErrorHttpInterceptorService implements HttpInterceptor {
             message = response.message;
           }
           this.messageService.add({severity: 'error', summary: 'Error', detail: message})
-          return throwError(message);
+          return throwError(() => new Error(message));
         })
       )
   }
