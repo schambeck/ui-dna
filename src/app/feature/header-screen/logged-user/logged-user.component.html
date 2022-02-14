@@ -1,7 +1,7 @@
 <ng-container *ngIf="auth.isAuthenticated$ | async">
   <p-menu #menu [popup]="true" [model]="items"></p-menu>
   <img
-    *ngIf="auth.user$ | async as user"
+    *ngIf="user$ | async as user"
     [src]="user.picture"
     (click)="menu.toggle($event)"
     alt="Profile picture"

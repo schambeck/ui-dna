@@ -1,8 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
-import { DOCUMENT } from '@angular/common';
+import { Component } from '@angular/core';
+import { AuthService, User } from '@auth0/auth0-angular';
 import {MenuItem} from 'primeng/api';
-import { Subscription } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-logged-user',
@@ -11,30 +10,23 @@ import { Subscription } from 'rxjs';
 })
 export class LoggedUserComponent {
 
-  items: MenuItem[] = [];
-  user$?: Subscription;
+  items!: MenuItem[];
+  user$: Observable<User | null | undefined>;
 
-  constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) {
+  constructor(public auth: AuthService) {
+    this.user$ = auth.user$.pipe(tap({ next: user => this.next(user!) }));
   }
 
-  ngOnInit(): void {
-    if (this.auth.user$) {
-      this.user$ = this.auth.user$.subscribe(user => {
-        this.items = [
-          {
-            label: user?.name,
-            items: [
-              {label: 'Profile', icon: 'pi pi-fw pi-user', routerLink: "/profile"},
-              {label: 'Log out', icon: 'pi pi-fw pi-power-off', command: () => this.auth.logout({ returnTo: document.location.origin })}
-            ]
-          },
-        ];
-      });
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.user$?.unsubscribe();
+  next(user: User): void {
+    this.items = [
+      {
+        label: user.name,
+        items: [
+          {label: 'Profile', icon: 'pi pi-fw pi-user', routerLink: "/profile"},
+          {label: 'Log out', icon: 'pi pi-fw pi-power-off', command: () => this.auth.logout({ returnTo: document.location.origin })}
+        ]
+      }
+    ];
   }
 
 }
