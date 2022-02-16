@@ -1,0 +1,31 @@
+<div *ngIf="countUnread$ | async as count else empty">
+    <div *ngIf="count > 0">
+        <i class="pi pi-bell mr-4" pBadge severity="info" style="font-size: 1.5rem;" [value]="count.toString()" (click)="op.toggle($event)"></i>
+    </div>
+</div>
+
+<ng-template #empty>
+    <i class="pi pi-bell mr-4" style="font-size: 1.5rem;" (click)="op.toggle($event)"></i>
+</ng-template>
+
+<p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '450px'}">
+    <ng-template pTemplate>
+        <div *ngIf="notifications | async as notifications">
+            <p-table [value]="notifications" selectionMode="single" [(selection)]="selectedNotification"
+                (onRowSelect)="onRowSelect($event, op)" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="title">Title<p-sortIcon field="title"></p-sortIcon></th>
+                        <th pSortableColumn="message">Message <p-sortIcon field="message"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-notification>
+                    <tr [pSelectableRow]="rowData" [ngStyle]="{'font-weight': notification.read ? 'lighter' : 'bolder'}">
+                        <td>{{notification.title}}</td>
+                        <td>{{notification.message}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </ng-template>
+</p-overlayPanel>
