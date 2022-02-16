@@ -14,16 +14,20 @@ import { SkeletonModule } from 'primeng/skeleton';
 import {AccordionModule} from 'primeng/accordion';
 import {TooltipModule} from 'primeng/tooltip';
 import {PaginatorModule} from 'primeng/paginator';
+import { EditMutantComponent } from './edit-mutant/edit-mutant.component';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
     MutantComponent,
-    ListMutantComponent
+    ListMutantComponent,
+    EditMutantComponent
   ],
   imports: [
     CommonModule,
     PanelModule,
     FormsModule,
+    InputTextModule,
     InputNumberModule,
     InputTextareaModule,
     ButtonModule,
@@ -34,6 +38,10 @@ import {PaginatorModule} from 'primeng/paginator';
     AccordionModule,
     TooltipModule,
     PaginatorModule
+  ],
+  exports: [
+    MutantComponent,
+    EditMutantComponent
   ]
 })
 export class MutantScreenModule { }

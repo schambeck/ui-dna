@@ -14,7 +14,7 @@ export class LoggedUserComponent {
   user$: Observable<User | null | undefined>;
 
   constructor(public auth: AuthService) {
-    this.user$ = auth.user$.pipe(tap({ next: user => this.next(user!) }));
+    this.user$ = auth.user$?.pipe(tap({ next: user => this.next(user!) }));
   }
 
   next(user: User): void {

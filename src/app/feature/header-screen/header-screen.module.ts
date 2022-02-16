@@ -8,6 +8,8 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {MenuModule} from 'primeng/menu';
 import {SidebarModule} from 'primeng/sidebar';
 import { SidebarScreenModule } from '../sidebar-screen/sidebar-screen.module';
+import {BadgeModule} from 'primeng/badge';
+import { NotificationScreenModule } from '../notification-screen/notification-screen.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { SidebarScreenModule } from '../sidebar-screen/sidebar-screen.module';
     ButtonModule,
     MenuModule,
     SidebarModule,
-    SidebarScreenModule
+    SidebarScreenModule,
+    BadgeModule,
+    NotificationScreenModule
   ],
   exports: [
     HeaderComponent

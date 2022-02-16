@@ -12,6 +12,7 @@ const { domain, clientId, audience, apiUri, errorPath, scope } = config as {
 export const environment = {
   production: true,
   urlBase: 'https://dna-rest.herokuapp.com',
+  urlBaseNotification: 'http://localhost:8090',
   pollingTimer: 5000,
   auth: {
     domain,

@@ -15,6 +15,7 @@ const { domain, clientId, audience, apiUri, errorPath, scope } = config as {
 export const environment = {
   production: false,
   urlBase: 'http://localhost:8080',
+  urlBaseNotification: 'http://localhost:8090',
   pollingTimer: 5000,
   auth: {
     domain,

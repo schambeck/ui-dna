@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
@@ -12,7 +13,7 @@ describe('MutantComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ListMutantComponent ],
-      imports: [HttpClientTestingModule, ToastModule], 
+      imports: [HttpClientTestingModule, ToastModule, RouterTestingModule], 
       providers: [ListMutantComponent, MessageService]  
     })
     .compileComponents();

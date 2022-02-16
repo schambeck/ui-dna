@@ -3,6 +3,7 @@ import { Dna } from 'src/app/shared/model/dna';
 import { MutantService } from 'src/app/shared/service/mutant.service';
 import { Observable, tap } from "rxjs";
 import { Page } from 'src/app/shared/model/page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-mutant',
@@ -18,7 +19,8 @@ export class ListMutantComponent {
   totalElements = 0;
   currentPage = 0;
 
-  constructor(private service: MutantService) { }
+  constructor(private service: MutantService,
+    private router: Router) { }
 
   load(page = 0): Observable<Page<Dna>> {
     this.loading = true;
@@ -40,7 +42,7 @@ export class ListMutantComponent {
   }
 
   navigateToDetail(dna: Dna): void {
-    // this.router.navigate(['/dna-detail', {id: dna.id}]).then(() => console.log(`navigateToDetail ${JSON.stringify(dna)}`));
+    this.router.navigate(['mutant', dna.id]);
   }
 
 }

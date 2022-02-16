@@ -5,6 +5,14 @@ import { Subscription } from 'rxjs';
 import { PayloadDna } from 'src/app/shared/model/payload-dna';
 import { MutantService } from 'src/app/shared/service/mutant.service';
 
+const DEFAULT_SIZE = 6;
+const DEFAULT_DNA = "AAATTT\n" +
+                     "CCCGGG\n" +
+                     "AAATTT\n" +
+                     "CCCGGG\n" +
+                     "AAATTT\n" +
+                     "CCCGGG";
+
 @Component({
   selector: 'app-mutant',
   templateUrl: './mutant.component.html',
@@ -12,16 +20,8 @@ import { MutantService } from 'src/app/shared/service/mutant.service';
 })
 export class MutantComponent implements OnDestroy {
 
-  static DEFAULT_SIZE = 6;
-  static DEFAULT_DNA = "AAATTT\n" +
-                       "CCCGGG\n" +
-                       "AAATTT\n" +
-                       "CCCGGG\n" +
-                       "AAATTT\n" +
-                       "CCCGGG";
-  
-  size = new Number(MutantComponent.DEFAULT_SIZE);
-  dna = new String(MutantComponent.DEFAULT_DNA);
+  size = new Number(DEFAULT_SIZE);
+  dna = new String(DEFAULT_DNA);
 
   saving = false;
   mutant$?: Subscription;
@@ -49,8 +49,8 @@ export class MutantComponent implements OnDestroy {
   }
 
   reset(): void {
-    this.size = MutantComponent.DEFAULT_SIZE;
-    this.dna = MutantComponent.DEFAULT_DNA;
+    this.size = DEFAULT_SIZE;
+    this.dna = DEFAULT_DNA;
   }
 
 }
