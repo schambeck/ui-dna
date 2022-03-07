@@ -10,6 +10,8 @@ import {SidebarModule} from 'primeng/sidebar';
 import { SidebarScreenModule } from '../sidebar-screen/sidebar-screen.module';
 import {BadgeModule} from 'primeng/badge';
 import { NotificationScreenModule } from '../notification-screen/notification-screen.module';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { NotificationScreenModule } from '../notification-screen/notification-sc
     SidebarModule,
     SidebarScreenModule,
     BadgeModule,
-    NotificationScreenModule
+    NotificationScreenModule,
+    ProgressSpinnerModule,
+    TooltipModule
   ],
   exports: [
     HeaderComponent
