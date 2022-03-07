@@ -16,6 +16,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {PaginatorModule} from 'primeng/paginator';
 import { EditMutantComponent } from './edit-mutant/edit-mutant.component';
 import {InputTextModule} from 'primeng/inputtext';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {InputTextModule} from 'primeng/inputtext';
     SkeletonModule,
     AccordionModule,
     TooltipModule,
-    PaginatorModule
+    PaginatorModule,
+    ProgressSpinnerModule
   ],
   exports: [
     MutantComponent,

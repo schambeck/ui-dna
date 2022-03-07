@@ -1,5 +1,5 @@
 <p-panel header="DNA">
-    <div *ngIf="dna$ | async as dna" class="grid">
+    <div *ngIf="dna$ | async as dna else loading" class="grid">
         <div class="field col-12">
             <label for="id" class="block">Id</label>
             <input id="id" type="text" class="w-4" [(ngModel)]="dna.id" disabled="true" pInputText>
@@ -13,6 +13,9 @@
             <input id="mutant" type="text" class="w-1" [(ngModel)]="dna.mutant" disabled="true" pInputText>
         </div>
     </div>
+    <ng-template #loading>
+        <p-progressSpinner class="flex align-items-center"></p-progressSpinner>
+    </ng-template>
     <div class="pt-2">
         <p-button label="Back" (onClick)="back()" icon="pi pi-arrow-left"></p-button>
     </div>
