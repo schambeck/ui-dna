@@ -1,6 +1,3 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
 import config from '../../auth_config.json';
 
 const { domain, clientId, audience, apiUri, errorPath, scope } = config as {
@@ -15,7 +12,7 @@ const { domain, clientId, audience, apiUri, errorPath, scope } = config as {
 export const environment = {
   production: false,
   urlBase: 'http://localhost:8080',
-  urlBaseNotification: 'http://localhost:8090',
+  urlBaseNotification: 'http://localhost:9000',
   pollingTimer: 5000,
   auth: {
     domain,
