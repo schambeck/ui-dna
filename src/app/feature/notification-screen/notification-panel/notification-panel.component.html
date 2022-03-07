@@ -14,12 +14,14 @@
             (onRowSelect)="onRowSelect($event)" [paginator]="notifications.length > 20" [rows]="20" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
+                    <th>Type</th>
                     <th pSortableColumn="title">Title<p-sortIcon field="title"></p-sortIcon></th>
                     <th pSortableColumn="message">Message <p-sortIcon field="message"></p-sortIcon></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-notification>
                 <tr [pSelectableRow]="rowData" [ngStyle]="{'font-weight': notification.read ? 'lighter' : 'bolder'}">
+                    <td style="text-align: center"><i class="pi pi-map-marker text-orange-500 text-xl"></i></td>
                     <td>{{notification.title}}</td>
                     <td>{{notification.message}}</td>
                 </tr>
