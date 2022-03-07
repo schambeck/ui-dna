@@ -6,6 +6,7 @@ import { CountUnread } from 'src/app/shared/model/count-unread';
 import { Notification } from 'src/app/shared/model/notification';
 import { CountUnreadMessage } from 'src/app/shared/model/count-unread-message';
 import { NotificationService } from 'src/app/shared/service/notification.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-notification-panel',
@@ -22,7 +23,8 @@ export class NotificationPanelComponent {
   @ViewChild('opSm') opSm?: OverlayPanel;
 
   constructor(private notificationService: NotificationService,
-    private router: Router) {
+    private router: Router,
+    public auth: AuthService) {
     this.notifications = this.notificationService.findAll();
     this.stream$ = this.notificationService.stream().subscribe(this.next.bind(this));
   }
