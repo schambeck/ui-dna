@@ -1,11 +1,11 @@
 <div *ngIf="countUnread$ | async as count else empty">
     <div *ngIf="count > 0">
-        <i class="pi pi-bell mr-4" pBadge severity="info" style="font-size: 1.5rem;" [value]="count.toString()" (click)="togglePanel($event)"></i>
+        <i class="pi pi-bell mr-4 cursor-pointer" pBadge severity="info" style="font-size: 1.5rem;" [value]="count.toString()" (click)="togglePanel($event)"></i>
     </div>
 </div>
 
 <ng-template #empty>
-    <i class="pi pi-bell mr-4" style="font-size: 1.5rem;" (click)="togglePanel($event)"></i>
+    <i class="pi pi-bell mr-4 cursor-pointer" style="font-size: 1.5rem;" (click)="togglePanel($event)"></i>
 </ng-template>
 
 <ng-template #notificationsRef>
