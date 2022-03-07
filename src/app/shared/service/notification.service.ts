@@ -26,11 +26,6 @@ export class NotificationService {
     return this.sseService.stream(`${url}`);
   }
 
-  countUnread(): Observable<CountUnread> {
-    let url = `${this.url}/notifications/queries/count-unread`;
-    return this.http.get<CountUnread>(url);
-  }
-
   findAll(): Observable<Notification[]> {
     let url = `${this.url}/notifications`;
     return this.http.get<Notification[]>(url);

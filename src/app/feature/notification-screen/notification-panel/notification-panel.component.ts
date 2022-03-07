@@ -25,7 +25,6 @@ export class NotificationPanelComponent {
     private router: Router) {
     this.notifications = this.notificationService.findAll();
     this.stream$ = this.notificationService.stream().subscribe(this.next.bind(this));
-    this.notificationService.countUnread().subscribe(this.setCount.bind(this));
   }
 
   onRowSelect(event: any): void {
@@ -54,10 +53,6 @@ export class NotificationPanelComponent {
 
   next(notificationCount: CountUnreadMessage): void {
     this.setCountUnread(notificationCount.countUnread);
-  }
-
-  setCount(count: CountUnread): void {
-    this.setCountUnread(count.countUnread);
   }
 
   setCountUnread(count: number): void {
