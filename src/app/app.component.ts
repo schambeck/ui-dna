@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { filter } from 'rxjs';
 
 // LogRocket.init('hhu6kg/schambeck');
 
@@ -11,11 +13,25 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent implements OnInit {
 
   title = 'DNA';
+  loading: boolean = false;
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title, private router: Router) {
+    router.events
+      .pipe(filter((e: Event): e is RouterEvent => e instanceof RouterEvent))
+      .subscribe((e: RouterEvent) => this.navigationInterceptor(e));
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
+  }
+
+  navigationInterceptor(event: RouterEvent): void {
+    if (event instanceof NavigationStart) {
+      this.loading = true
+    }
+    if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+      this.loading = false
+    }
   }
 
 }

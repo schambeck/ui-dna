@@ -16,6 +16,7 @@ import { MutantScreenModule } from './feature/mutant-screen/mutant-screen.module
 import { MessageService } from 'primeng/api';
 import { ErrorHttpInterceptorService } from './shared/service/error-http-interceptor.service';
 import {ToastModule} from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {ToastModule} from 'primeng/toast';
     MutantScreenModule,
     StatsScreenModule,
     ToastModule,
+    ProgressSpinnerModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
