@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
 import { PanelModule } from 'primeng/panel';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { PanelModule } from 'primeng/panel';
   ],
   imports: [
     CommonModule,
-    PanelModule
+    PanelModule,
+    CardModule
   ],
   exports: [
     ProfileComponent
