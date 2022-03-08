@@ -23,6 +23,6 @@ export const environment = {
     scope
   },
   httpInterceptor: {
-    allowedList: [`${apiUri}/*`]
+    allowedList: [`${apiUri}/*`, 'https://sch-api-notification.herokuapp.com/*']
   }
 };

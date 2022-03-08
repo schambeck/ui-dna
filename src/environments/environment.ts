@@ -23,7 +23,7 @@ export const environment = {
     scope
   },
   httpInterceptor: {
-    allowedList: [`${apiUri}/*`]
+    allowedList: [`${apiUri}/*`, 'http://localhost:9000/*']
   }
 };
 
