@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { CountUnread } from 'src/app/shared/model/count-unread';
 import { Notification } from 'src/app/shared/model/notification';
 import { CountUnreadMessage } from 'src/app/shared/model/count-unread-message';
 import { NotificationService } from 'src/app/shared/service/notification.service';
