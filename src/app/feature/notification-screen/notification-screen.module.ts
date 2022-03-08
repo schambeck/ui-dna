@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import {TableModule} from "primeng/table";
 import {BadgeModule} from 'primeng/badge';
 import {PanelModule} from 'primeng/panel';
+import {DataViewModule} from 'primeng/dataview';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {PanelModule} from 'primeng/panel';
     OverlayPanelModule,
     ButtonModule,
     TableModule,
-    PanelModule
+    PanelModule,
+    DataViewModule,
+    ProgressSpinnerModule
   ],
   exports: [
     NotificationPanelComponent

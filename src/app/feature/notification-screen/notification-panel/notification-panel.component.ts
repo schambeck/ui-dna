@@ -28,12 +28,12 @@ export class NotificationPanelComponent {
     this.stream$ = this.notificationService.stream().subscribe(this.next.bind(this));
   }
 
-  onRowSelect(event: any): void {
-    if (event.data) {
-      this.notificationService.markAsRead(event.data.id).subscribe({ 
-        next: () => console.log(`Marked as read: ${event.data.id}`) 
+  onRowSelect(notification: Notification): void {
+    if (notification) {
+      this.notificationService.markAsRead(notification.id).subscribe({ 
+        next: () => console.log(`Marked as read: ${notification.id}`) 
       });
-      this.router.navigate([decodeURI(event.data.link)]);
+      this.router.navigate([decodeURI(notification.link)]);
       this.getVisiblePanel()?.hide();
     }
   }
