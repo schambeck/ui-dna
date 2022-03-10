@@ -3,6 +3,7 @@
   "clientId": "eKc5I51jm4DI0Rk4IqnUioJAtOrA540H",
   "audience": "http://dna-schambeck.herokuapp.com",
   "apiUri": "https://dna-rest.herokuapp.com",
+  "apiNotificationUri": "https://sch-api-notification.herokuapp.com",
   "appUri": "http://ui-dna.herokuapp.com",
   "errorPath": "/error",
   "scope": "read:stats create:mutant list:mutant"

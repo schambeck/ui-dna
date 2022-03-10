@@ -1,11 +1,17 @@
 <div *ngIf="{ isAuthenticated: auth.isAuthenticated$ | async, countUnread: countUnread$ | async} as observables">
-    <div *ngIf="observables.isAuthenticated && observables.countUnread && observables.countUnread > 0 else empty">
-        <i class="pi pi-bell mr-4 cursor-pointer" pBadge severity="info" style="font-size: 1.5rem;" [value]="observables.countUnread.toString()" (click)="togglePanel($event)"></i>
+    <div *ngIf="observables.isAuthenticated else notAuthenticated">
+        <div *ngIf="observables.countUnread && observables.countUnread > 0 else empty">
+            <i class="pi pi-bell mr-4 cursor-pointer" pBadge severity="info" style="font-size: 1.5rem;" [value]="observables.countUnread.toString()" (click)="togglePanel($event)"></i>
+        </div>
     </div>
 </div>
 
-<ng-template #empty>
+<ng-template #notAuthenticated>
     <i class="pi pi-bell mr-4" style="font-size: 1.5rem;"></i>
+</ng-template>
+
+<ng-template #empty>
+    <i class="pi pi-bell mr-4" style="font-size: 1.5rem;" (click)="togglePanel($event)"></i>
 </ng-template>
 
 <ng-template #notificationsRef>

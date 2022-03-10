@@ -21,13 +21,13 @@ export class NotificationService {
   constructor(private sseService: SseService<CountUnreadMessage>, private http: HttpClient) {
   }
 
-  stream(): Observable<CountUnreadMessage> {
-    let url = `${this.url}/sse`;
-    return this.sseService.stream(`${url}`);
+  stream(token: string): Observable<CountUnreadMessage> {
+    let url = `${this.url}/sse?token=${token}`;
+    return this.sseService.stream(url);
   }
 
-  findAll(): Observable<Notification[]> {
-    let url = `${this.url}/notifications`;
+  findByUser(): Observable<Notification[]> {
+    let url = `${this.url}/notifications/queries/find-by-user`;
     return this.http.get<Notification[]>(url);
   }
 

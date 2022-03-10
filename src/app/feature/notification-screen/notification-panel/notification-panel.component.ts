@@ -24,8 +24,12 @@ export class NotificationPanelComponent {
   constructor(private notificationService: NotificationService,
     private router: Router,
     public auth: AuthService) {
-    this.notifications = this.notificationService.findAll();
-    this.stream$ = this.notificationService.stream().subscribe(this.next.bind(this));
+    this.auth.getAccessTokenSilently().subscribe(this.token.bind(this));
+    this.notifications = this.notificationService.findByUser();
+  }
+
+  token(token: string): void {
+    this.stream$ = this.notificationService.stream(token).subscribe(this.next.bind(this));
   }
 
   onRowSelect(notification: Notification): void {
@@ -57,7 +61,6 @@ export class NotificationPanelComponent {
   }
 
   setCountUnread(count: number): void {
-    console.log(`countUnread: ${count}`)
     this.countUnread$.next(count);
   }
 

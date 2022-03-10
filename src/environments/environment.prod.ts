@@ -1,10 +1,11 @@
 import config from '../../auth_config.prod.json';
 
-const { domain, clientId, audience, apiUri, errorPath, scope } = config as {
+const { domain, clientId, audience, apiUri, apiNotificationUri, errorPath, scope } = config as {
   domain: string;
   clientId: string;
   audience?: string;
   apiUri: string;
+  apiNotificationUri: string;
   errorPath: string;
   scope: string;
 };
@@ -23,6 +24,6 @@ export const environment = {
     scope
   },
   httpInterceptor: {
-    allowedList: [`${apiUri}/*`, 'https://sch-api-notification.herokuapp.com/*']
+    allowedList: [`${apiUri}/*`, `${apiNotificationUri}/*`]
   }
 };
