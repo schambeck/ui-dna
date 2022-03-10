@@ -24,7 +24,9 @@ export class NotificationPanelComponent {
   constructor(private notificationService: NotificationService,
     private router: Router,
     public auth: AuthService) {
-    this.auth.getAccessTokenSilently().subscribe(this.token.bind(this));
+    if (this.auth && this.auth.getAccessTokenSilently) {
+      this.auth.getAccessTokenSilently().subscribe(this.token.bind(this));
+    }
     this.notifications = this.notificationService.findByUser();
   }
 
@@ -34,8 +36,8 @@ export class NotificationPanelComponent {
 
   onRowSelect(notification: Notification): void {
     if (notification) {
-      this.notificationService.markAsRead(notification.id).subscribe({ 
-        next: () => console.log(`Marked as read: ${notification.id}`) 
+      this.notificationService.markAsRead(notification.id).subscribe({
+        next: () => console.log(`Marked as read: ${notification.id}`)
       });
       this.router.navigate([decodeURI(notification.link)]);
       this.getVisiblePanel()?.hide();

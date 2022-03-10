@@ -14,7 +14,7 @@ export class SseService<T> {
     return new Observable<T>((observer) => {
       const eventSource = new EventSource(url);
 
-      eventSource.onopen = () => this.zone.run(() => console.log(`Opened connection to ${eventSource.url}`));
+      eventSource.onopen = () => this.zone.run(() => console.log('Opened connection to SSE'));
 
       eventSource.onmessage = (event: MessageEvent) => {
         this.zone.run(() => {
