@@ -4,7 +4,7 @@
   "audience": "http://dna-schambeck.herokuapp.com",
   "apiUri": "https://dna-rest.herokuapp.com",
   "apiNotificationUri": "https://sch-api-notification.herokuapp.com",
-  "appUri": "https://schambeck.github.io/ui-dna",
+  "appUri": "http://schambeck.github.io/ui-dna",
   "errorPath": "/error",
   "scope": "read:stats create:mutant list:mutant"
 }
