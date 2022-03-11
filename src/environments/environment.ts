@@ -1,11 +1,12 @@
 import config from '../../auth_config.json';
 
-const { domain, clientId, audience, apiUri, apiNotificationUri, errorPath, scope } = config as {
+const { domain, clientId, audience, apiUri, apiNotificationUri, appUri, errorPath, scope } = config as {
   domain: string;
   clientId: string;
   audience?: string;
   apiUri: string;
   apiNotificationUri: string;
+  appUri: string;
   errorPath: string;
   scope: string;
 };
@@ -19,7 +20,7 @@ export const environment = {
     domain,
     clientId,
     ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
-    redirectUri: window.location.origin,
+    redirectUri: appUri,
     errorPath,
     scope
   },
