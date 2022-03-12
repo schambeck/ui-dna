@@ -33,6 +33,6 @@ Folder generated: dist/ui-dna
 
 ## UI Deployment
 
-### Heroku
+### GitHub Pages
 
-URL: https://ui-dna.herokuapp.com
+URL: https://schambeck.github.io/ui-dna
