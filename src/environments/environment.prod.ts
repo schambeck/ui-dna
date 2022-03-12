@@ -13,7 +13,7 @@ const { domain, clientId, audience, apiUri, apiNotificationUri, appUri, errorPat
 
 export const environment = {
   production: true,
-  urlBase: 'https://dna-rest.herokuapp.com',
+  urlBase: 'https://sch-api-dna.herokuapp.com',
   urlBaseNotification: 'https://sch-api-notification.herokuapp.com',
   pollingTimer: 5000,
   auth: {
