@@ -6,7 +6,7 @@ export const authConfig: AuthConfig = {
   clientId: 'newClient', // The "Auth Code + PKCE" client
   dummyClientSecret: 'newClientSecret', // The "Auth Code + PKCE" client
   responseType: 'code',
-  redirectUri: window.location.origin + '/',
+  redirectUri: environment.redirectUri,
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
   scope: 'openid write read', // Ask offline_access to support refresh token refreshes
   useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
