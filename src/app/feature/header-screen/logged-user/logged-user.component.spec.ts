@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from "src/app/auth/auth.service";
 import { LoggedUserComponent } from './logged-user.component';
 
 describe('LoggedUserComponent', () => {
@@ -8,7 +8,7 @@ describe('LoggedUserComponent', () => {
   let authServiceSpy: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
-    authServiceSpy = jasmine.createSpyObj('AuthService', ['loginWithRedirect']);
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['getUsername']);
 
     await TestBed.configureTestingModule({
       declarations: [ LoggedUserComponent ],

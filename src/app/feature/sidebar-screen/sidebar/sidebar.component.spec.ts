@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from "src/app/auth/auth.service";
 import { SidebarComponent } from './sidebar.component';
 
 describe('SidebarComponent', () => {

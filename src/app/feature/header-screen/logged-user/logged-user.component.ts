@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService, User } from '@auth0/auth0-angular';
-import {MenuItem} from 'primeng/api';
-import { Observable, tap } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AuthService } from "src/app/auth/auth.service";
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-logged-user',
@@ -12,19 +10,20 @@ import { environment } from 'src/environments/environment';
 export class LoggedUserComponent {
 
   items!: MenuItem[];
-  user$: Observable<User | null | undefined>;
+  username?: string;
 
-  constructor(public auth: AuthService) {
-    this.user$ = auth.user$?.pipe(tap({ next: user => this.next(user!) }));
+  constructor(public authService: AuthService) {
+    this.username = this.authService.getUsername();
+    this.buildMenu();
   }
 
-  next(user: User): void {
+  buildMenu(): void {
     this.items = [
       {
-        label: user.name,
+        label: this.username,
         items: [
           {label: 'Profile', icon: 'pi pi-fw pi-user', routerLink: "/profile"},
-          {label: 'Log out', icon: 'pi pi-fw pi-power-off', command: () => this.auth.logout({ returnTo: environment.auth.redirectUri })}
+          {label: 'Log out', icon: 'pi pi-fw pi-power-off', command: () => this.authService.logout()}
         ]
       }
     ];

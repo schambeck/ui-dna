@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AuthService, User } from '@auth0/auth0-angular';
-import { Subscription } from 'rxjs';
+import { AuthService } from "src/app/auth/auth.service";
+import { OAuthService } from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-profile',
@@ -10,31 +10,14 @@ import { Subscription } from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
   profileJson?: string;
-  user$?: Subscription;
 
-  constructor(private titleService: Title, public auth: AuthService) {}
+  constructor(private titleService: Title,
+              private oauthService: OAuthService,
+              public authService: AuthService) {}
 
   ngOnInit() {
     this.titleService.setTitle("Profile");
-    if (this.auth.user$) {
-      this.auth.user$.subscribe(profile => this.profileJson = JSON.stringify(this.removeProperties(profile), null, 2));
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.user$?.unsubscribe();
-  }
-
-  removeProperties(profile: User | null | undefined): User | undefined {
-    if (profile) {
-      let cloned = new User();
-      Object.assign(cloned, profile);
-      delete cloned.picture;
-      delete cloned.updated_at;
-      delete cloned.sub;
-      return cloned;
-    }
-    return undefined;
+    this.profileJson = JSON.stringify(this.oauthService.getIdentityClaims(), null, 4);
   }
 
 }

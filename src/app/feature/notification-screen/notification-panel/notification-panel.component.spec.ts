@@ -1,21 +1,28 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from "src/app/auth/auth.service";
+import { OAuthService } from "angular-oauth2-oidc";
 import { NotificationPanelComponent } from './notification-panel.component';
+import { Observable, of } from "rxjs";
 
 describe('NotificationPanelComponent', () => {
   let component: NotificationPanelComponent;
   let fixture: ComponentFixture<NotificationPanelComponent>;
+  let oauthServiceSpy: jasmine.SpyObj<OAuthService>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
-    authServiceSpy = jasmine.createSpyObj('AuthService', ['loginWithRedirect']);
+    oauthServiceSpy = jasmine.createSpyObj('OAuthService', ['getAccessToken']);
+    authServiceSpy = jasmine.createSpyObj('AuthService', [], {'isAuthenticated$': of(new Observable(subscriber => subscriber.next(true)))});
 
     await TestBed.configureTestingModule({
       declarations: [ NotificationPanelComponent ],
       imports: [ HttpClientTestingModule, RouterTestingModule ],
-      providers: [{ provide: AuthService, useValue: authServiceSpy }]
+      providers: [
+        { provide: OAuthService, useValue: oauthServiceSpy },
+        { provide: AuthService, useValue: authServiceSpy }
+      ]
     })
     .compileComponents();
   });

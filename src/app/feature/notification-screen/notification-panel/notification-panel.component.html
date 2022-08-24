@@ -1,4 +1,4 @@
-<div *ngIf="{ isAuthenticated: auth.isAuthenticated$ | async, countUnread: countUnread$ | async} as observables">
+<div *ngIf="{ isAuthenticated: authService.isAuthenticated$ | async, countUnread: countUnread$ | async} as observables">
     <div *ngIf="observables.isAuthenticated else notAuthenticated">
         <div *ngIf="observables.countUnread && observables.countUnread > 0 else empty">
             <i class="pi pi-bell mr-4 cursor-pointer" pBadge severity="info" style="font-size: 1.5rem;" [value]="observables.countUnread.toString()" (click)="togglePanel($event)"></i>
@@ -6,9 +6,9 @@
     </div>
 </div>
 
-<ng-template #notAuthenticated>
+ <ng-template #notAuthenticated>
     <i class="pi pi-bell mr-4" style="font-size: 1.5rem;"></i>
-</ng-template>
+ </ng-template>
 
 <ng-template #empty>
     <i class="pi pi-bell mr-4" style="font-size: 1.5rem;" (click)="togglePanel($event)"></i>
@@ -16,7 +16,7 @@
 
 <ng-template #notificationsRef>
     <div *ngIf="notifications | async as notifications else loading">
-        <p-dataView [value]="notifications" [paginator]="true" [rows]="15" [alwaysShowPaginator]="false">
+        <p-dataView [value]="notifications" [paginator]="true" [rows]="13" [alwaysShowPaginator]="false">
             <ng-template pTemplate="header">Notifications</ng-template>
             <ng-template let-notification pTemplate="listItem">
                 <div class="block p-2 cursor-pointer hover:surface-100" (click)="onRowSelect(notification)" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" [ngStyle]="{'font-weight': notification.read ? 'lighter' : 'bolder'}">

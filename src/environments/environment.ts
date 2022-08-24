@@ -1,32 +1,10 @@
-import config from '../../auth_config.json';
-
-const { domain, clientId, audience, apiUri, apiNotificationUri, appUri, errorPath, scope } = config as {
-  domain: string;
-  clientId: string;
-  audience?: string;
-  apiUri: string;
-  apiNotificationUri: string;
-  appUri: string;
-  errorPath: string;
-  scope: string;
-};
-
 export const environment = {
   production: false,
+  issuer: 'http://localhost:9000/auth/realms/schambeck',
+  redirectUri: 'http://localhost:4200/',
   urlBase: 'http://localhost:8080',
-  urlBaseNotification: 'http://localhost:9000',
-  pollingTimer: 5000,
-  auth: {
-    domain,
-    clientId,
-    ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
-    redirectUri: appUri,
-    errorPath,
-    scope
-  },
-  httpInterceptor: {
-    allowedList: [`${apiUri}/*`, `${apiNotificationUri}/*`]
-  }
+  urlBaseNotification: 'http://localhost:8090',
+  pollingTimer: 5000
 };
 
 /*
