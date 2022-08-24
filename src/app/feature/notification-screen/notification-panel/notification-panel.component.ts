@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, filter, map } from 'rxjs';
 import { Notification } from 'src/app/shared/model/notification';
 import { CountUnreadMessage } from 'src/app/shared/model/count-unread-message';
 import { NotificationService } from 'src/app/shared/service/notification.service';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from "src/app/auth/auth.service";
+import { OAuthService } from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-notification-panel',
@@ -23,10 +24,12 @@ export class NotificationPanelComponent {
 
   constructor(private notificationService: NotificationService,
     private router: Router,
-    public auth: AuthService) {
-    if (this.auth && this.auth.getAccessTokenSilently) {
-      this.auth.getAccessTokenSilently().subscribe(this.token.bind(this));
-    }
+    private oauthService: OAuthService,
+    public authService: AuthService) {
+    this.authService.isAuthenticated$
+      .pipe(filter(authenticated => authenticated))
+      .pipe(map(() => this.oauthService.getAccessToken()))
+      .subscribe(this.token.bind(this));
     this.notifications = this.notificationService.findByUser();
   }
 

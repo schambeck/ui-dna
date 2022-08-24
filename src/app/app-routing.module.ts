@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {StatsComponent} from "./feature/stats-screen/stats/stats.component";
 import {PageNotFoundComponent} from "./feature/page-not-found-screen/page-not-found/page-not-found.component";
 import { HomeComponent } from './feature/home-screen/home/home.component';
-import { AuthGuard } from '@auth0/auth0-angular';
+import { AuthGuard } from "./auth/auth-guard.service";
 import { ProfileComponent } from './feature/profile-screen/profile/profile.component';
 import { MutantComponent } from './feature/mutant-screen/mutant/mutant.component';
 import { EditMutantComponent } from './feature/mutant-screen/edit-mutant/edit-mutant.component';

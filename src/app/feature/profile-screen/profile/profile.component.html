@@ -1,15 +1,15 @@
 <p-panel header="Profile">
   <div class="grid flex justify-content-center">
     <p-card>
-      <div class="p-4" *ngIf="auth.user$ | async as user">
+      <div class="p-4">
         <div class="flex" style="width: 40vw;">
           <img
-            [src]="user.picture"
+            src="assets/user-avatar.png"
             class="border-circle mr-4 shadow-4"
+            alt="Profile picture"
           />
           <div>
-              <h2 class="flex">{{ user.name }}</h2>
-              <p class="flex">{{ user.email }}</p>
+              <h3 class="flex">{{ authService.getUsername() }}</h3>
           </div>
         </div>
       </div>

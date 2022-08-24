@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -17,7 +16,7 @@ export class SidebarComponent implements OnInit {
 
   items: MenuItem[];
 
-  constructor(auth: AuthService) {
+  constructor() {
     this.items = [
       {
         label: 'General',

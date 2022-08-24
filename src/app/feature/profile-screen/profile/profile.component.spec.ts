@@ -1,18 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from "src/app/auth/auth.service";
 import { ProfileComponent } from './profile.component';
+import { OAuthService } from "angular-oauth2-oidc";
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
+  let oauthServiceSpy: jasmine.SpyObj<OAuthService>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
-    authServiceSpy = jasmine.createSpyObj('AuthService', ['loginWithRedirect']);
+    oauthServiceSpy = jasmine.createSpyObj('OAuthService', ['getIdentityClaims']);
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['getUsername']);
 
     await TestBed.configureTestingModule({
       declarations: [ ProfileComponent ],
-      providers: [{ provide: AuthService, useValue: authServiceSpy }]
+      providers: [
+        { provide: OAuthService, useValue: oauthServiceSpy },
+        { provide: AuthService, useValue: authServiceSpy }
+      ]
     })
     .compileComponents();
   });
