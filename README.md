@@ -9,12 +9,12 @@
 - NPM 8
 - Angular 13
 - PrimeNG 13
-- Auth0
+- Keycloak
 - Server-sent events
 
 ### Related Projects
 
-- DNA Rest API: [api-dna](https://github.com/schambeck/dna)
+- DNA Rest API: [api-dna](https://github.com/schambeck/api-dna)
 - Server-sent events: [api-notification](https://github.com/schambeck/api-notification)
 
 ### Install dependencies
@@ -36,3 +36,5 @@ Folder generated: dist/ui-dna
 ### GitHub Pages
 
 URL: https://schambeck.github.io/ui-dna
+User: john@test.com
+Pass: 123
