@@ -1,9 +1,9 @@
 export const environment = {
   production: false,
-  issuer: 'http://localhost:9000/auth/realms/schambeck',
+  issuer: 'https://sch-srv-authorization.herokuapp.com/auth/realms/schambeck',
   redirectUri: 'http://localhost:4200/',
-  urlBase: 'http://localhost:8080',
-  urlBaseNotification: 'http://localhost:8090',
+  urlBase: 'http://api-dna.localhost',
+  urlBaseNotification: 'http://api-notification.localhost',
   pollingTimer: 5000
 };
 
