@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  issuer: 'https://sch-srv-authorization.herokuapp.com/auth/realms/schambeck',
+  issuer: 'http://srv-keycloak.localhost/realms/schambeck',
   redirectUri: 'http://localhost:4200/',
   urlBase: 'http://api-dna.localhost',
   urlBaseNotification: 'http://api-notification.localhost',
