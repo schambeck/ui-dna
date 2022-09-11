@@ -36,8 +36,8 @@ Folder generated: dist/ui-dna
 
 ### GitHub Pages
 
-URL: https://schambeck.github.io/ui-dna
-User1: user01
-Pass1: password1
-User2: user02
-Pass2: password2
+    URL: https://schambeck.github.io/ui-dna
+    User1: user01
+    Pass1: password1
+    User2: user02
+    Pass2: password2
