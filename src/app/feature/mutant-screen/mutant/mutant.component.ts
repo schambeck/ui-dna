@@ -6,7 +6,7 @@ import { PayloadDna } from 'src/app/shared/model/payload-dna';
 import { MutantService } from 'src/app/shared/service/mutant.service';
 
 const DEFAULT_SIZE = 6;
-const DEFAULT_DNA = "AAATTT\n" +
+const DEFAULT_DNA = "AAAATT\n" +
                      "CCCGGG\n" +
                      "AAATTT\n" +
                      "CCCGGG\n" +
@@ -29,13 +29,13 @@ export class MutantComponent implements OnDestroy {
   constructor(private titleService: Title, private service: MutantService, private messageService: MessageService) {
     this.titleService.setTitle("Mutant");
   }
-   
+
   ngOnDestroy(): void {
     if (this.mutant$) {
       this.mutant$?.unsubscribe();
     }
   }
-  
+
   save(): void {
     this.saving = true;
     var payload: PayloadDna = {
