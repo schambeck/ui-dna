@@ -15,6 +15,7 @@ import { MessageService } from 'primeng/api';
 import { ErrorHttpInterceptorService } from './shared/service/error-http-interceptor.service';
 import {ToastModule} from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,10 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHttpInterceptorService,
       multi: true
+    },
+    {
+      provide: APP_BASE_HREF, 
+      useValue: '/ui-dna/'
     },
     MessageService
   ],
